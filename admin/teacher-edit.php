@@ -13,7 +13,8 @@
             $teacher_id = $_GET['teacher_id'];
             $teachers = getTeachersById($teacher_id, $conn);
 
-
+            $grades = explode(",", $teachers['grades']);
+            $subjects = explode(",", $teachers['subjects']);
 
             if ($teacher_id == 0) {
                 header("Location: teacher.php");
@@ -81,58 +82,52 @@
                      <div>
                          <input type="text" value=" <?= $teachers['teacher_id'] ?>" name="teacher_id" hidden>
                      </div>
-                     <?php
-                        while ($subjects = explode(",", $teachers['subjects'])) {
-                        ?>
-                         <div class="mb-3">
-                             <label class="form-label">Subject</label>
-                             <div class="row">
-                                 <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                                     <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" name="subject[]" value="English" <?php
-                                                                                                                                                    if (in_array("English", $subjects)) {
-                                                                                                                                                        echo "checked";
-                                                                                                                                                    }
-                                                                                                                                                    ?> />
 
-                                     <label class="btn btn-outline-primary" for="btncheck1">English</label>
-
-                                     <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" name="subject[]" value="Physics" <?php
-                                                                                                                                                    if (in_array("Physics", $subjects)) {
-                                                                                                                                                        echo "checked";
-                                                                                                                                                    }
-                                                                                                                                                    ?> />
-
-                                     <label class="btn btn-outline-primary" for="btncheck2">Physics</label>
-
-                                     <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" name="subject[]" value="Biology" <?php
-                                                                                                                                                    if (in_array("Biology", $subjects)) {
-                                                                                                                                                        echo "checked";
-                                                                                                                                                    } ?> />
-
-                                     <label class="btn btn-outline-primary" for="btncheck3">Biology</label>
-
-                                     <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off" name="subject[]" value="Maths" <?php
-                                                                                                                                                if (in_array("Maths", $subjects)) {
+                     <div class="mb-3">
+                         <label class="form-label">Subject</label>
+                         <div class="row">
+                             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                 <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" name="subject[]" value="English" <?php
+                                                                                                                                                if (in_array("English", $subjects)) {
                                                                                                                                                     echo "checked";
                                                                                                                                                 }
                                                                                                                                                 ?> />
 
-                                     <label class="btn btn-outline-primary" for="btncheck4">Maths</label>
+                                 <label class="btn btn-outline-primary" for="btncheck1">English</label>
 
-                                     <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off" name="subject[]" value="Chemistry" <?php
-                                                                                                                                                    if (in_array("Chemistry", $subjects)) {
-                                                                                                                                                        echo "checked";
-                                                                                                                                                    }
-                                                                                                                                                    ?> />
+                                 <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" name="subject[]" value="Physics" <?php
+                                                                                                                                                if (in_array("Physics", $subjects)) {
+                                                                                                                                                    echo "checked";
+                                                                                                                                                }
+                                                                                                                                                ?> />
 
-                                     <label class="btn btn-outline-primary" for="btncheck5">Chemistry</label>
-                                 </div>
+                                 <label class="btn btn-outline-primary" for="btncheck2">Physics</label>
+
+                                 <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" name="subject[]" value="Biology" <?php
+                                                                                                                                                if (in_array("Biology", $subjects)) {
+                                                                                                                                                    echo "checked";
+                                                                                                                                                } ?> />
+
+                                 <label class="btn btn-outline-primary" for="btncheck3">Biology</label>
+
+                                 <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off" name="subject[]" value="Maths" <?php
+                                                                                                                                            if (in_array("Maths", $subjects)) {
+                                                                                                                                                echo "checked";
+                                                                                                                                            }
+                                                                                                                                            ?> />
+
+                                 <label class="btn btn-outline-primary" for="btncheck4">Maths</label>
+
+                                 <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off" name="subject[]" value="Chemistry" <?php
+                                                                                                                                                if (in_array("Chemistry", $subjects)) {
+                                                                                                                                                    echo "checked";
+                                                                                                                                                }
+                                                                                                                                                ?> />
+
+                                 <label class="btn btn-outline-primary" for="btncheck5">Chemistry</label>
                              </div>
                          </div>
-                     <?php }
-
-                        while ($grades = explode(",", $teachers['grades'])){
-                     ?>
+                     </div>
                      <div class="mb-3">
                          <label class="form-label">Grade</label>
                          <div class="row">
@@ -171,7 +166,7 @@
                              </div>
                          </div>
                      </div>
-                                                                                                                                        <?php } ?>
+
                      <button type="submit" class="btn btn-primary">Update</button>
                  </form>
 
