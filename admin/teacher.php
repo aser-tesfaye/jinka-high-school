@@ -70,10 +70,12 @@
                              </thead>
                              <tbody>
                                  <?php
-                                    foreach ($teachers as $teachers) {
+                                   $i = 0;
+                                   foreach ($teachers as $teachers) {
+                                    $i++
                                     ?>
                                      <tr>
-                                         <th scope="row">1</th>
+                                         <th scope="row"><?=$i?></th>
                                          <td><?= $teachers['teacher_id'] ?></td>
                                          <td><?= $teachers['fname'] ?></td>
                                          <td><?= $teachers['lname'] ?></td>

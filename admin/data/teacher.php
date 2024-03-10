@@ -34,18 +34,30 @@ function getAllTeachers($conn)
 
 
 //Checking if the username is taken
-function unameIsUnique($uname, $conn)
+function unameIsUnique($uname, $conn, $teacher_id = 0)
 {
-    $sql = "SELECT username FROM teachers
+    $sql = "SELECT username, teacher_id FROM teachers
             WHERE username=?";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$uname]);
 
-    if ($stmt->rowCount() >= 1) {
-
-        return 0;
-    } else {
-        return 1;
+    if ($teacher_id == 0) {
+        if ($stmt->rowCount() >= 1) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }else {
+        if ($stmt->rowCount() >= 1) {
+            $teachers = $stmt->fetch();
+            if ($teachers['teacher_id']  == $teacher_id) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } else {
+            return 1;
+        }
     }
 }
 

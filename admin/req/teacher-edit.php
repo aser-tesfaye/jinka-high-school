@@ -43,7 +43,7 @@ if (
                 $em  = "Username is required";
                 header("Location: ../teacher-edit.php?error=$em");
                 exit;
-            } else if (!unameIsUnique($uname, $conn)) {
+            } else if (!unameIsUnique($uname, $conn, $teacher_id)) {
                 $em  = "Username is taken! try another";
                 header("Location: ../teacher-edit.php?error=$em");
                 exit;
@@ -56,12 +56,11 @@ if (
                 header("Location: ../teacher-edit.php?error=$em");
                 exit;
             } else {
-                $sql = "UPDATE teachers SET
-                username = ?, fname=?, lname=?, subjects=?,grades=?
+                $sql = "UPDATE teachers SET username = ?,fname=?,lname=?,subjects=?,grades=?
                 
                 WHERE teacher_id=?";
                 $stmt = $conn->prepare($sql);
-                $stmt->execute([$uname, $fname, $lname, $allSubject, $allGrade,$teacher_id]);
+                $stmt->execute([$uname, $fname, $lname, $allSubject, $allGrade, $teacher_id]);
                 $sm = "successfully updated!";
                 header("Location: ../teacher-edit.php?success=$sm");
                 exit;
