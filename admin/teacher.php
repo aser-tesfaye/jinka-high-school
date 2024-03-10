@@ -71,8 +71,6 @@
                              <tbody>
                                  <?php
                                     foreach ($teachers as $teachers) {
-                                        # code...
-
                                     ?>
                                      <tr>
                                          <th scope="row">1</th>
@@ -83,7 +81,7 @@
                                          <td><?= $teachers['subjects'] ?></td>
                                          <td><?= $teachers['grades'] ?></td>
                                          <td>
-                                             <a href="" class="btn btn-warning">Edit</a>
+                                             <a href="teacher-edit.php?teacher_id=<?= $teachers['teacher_id'] ?>" class="btn btn-warning">Edit</a>
                                              <a href="teacher-del.php?teacher_id=<?= $teachers['teacher_id'] ?>" class="btn btn-danger">Delete</a>
                                          </td>
                                      </tr>

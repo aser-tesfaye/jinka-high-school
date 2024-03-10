@@ -1,5 +1,21 @@
 <?php
 
+// Get Teacher by ID
+function getTeachersById($teacher_id, $conn)
+{
+    $sql = "SELECT * FROM teachers
+           WHERE teacher_id=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$teacher_id]);
+
+    if ($stmt->rowCount() == 1) {
+        $teachers = $stmt->fetch();
+        return $teachers;
+    } else {
+        return 0;
+    }
+}
+
 
 // All Teachers
 function getAllTeachers($conn)

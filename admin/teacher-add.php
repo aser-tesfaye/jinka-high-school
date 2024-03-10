@@ -11,6 +11,15 @@
             $teachers = getAllTeachers($conn);
             // $subjects = getAllSubjects($conn);
 
+            $fname = '';
+            $lname = '';
+            $uname = '';
+
+
+            if (isset($_GET['fname'])) $fname = $_GET['fname'];
+            if (isset($_GET['lname'])) $lname = $_GET['lname'];
+            if (isset($_GET['uname'])) $uname = $_GET['uname'];
+
     ?>
          <!DOCTYPE html>
          <html lang="en">
@@ -57,17 +66,17 @@
 
                      <div class="mb-3">
                          <label class="form-label">First Name</label>
-                         <input type="text" name="fname" class="form-control">
+                         <input type="text" name="fname" class="form-control" value="<?= $fname ?>">
                      </div>
                      <div class="mb-3">
                          <label class="form-label">Last Name</label>
-                         <input type="text" name="lname" class="form-control">
+                         <input type="text" name="lname" class="form-control" value="<?= $lname ?>">
                      </div>
-                     <div class="mb-3">
+                     <div class=" mb-3">
                          <label class="form-label">Username</label>
-                         <input type="text" name="username" class="form-control">
+                         <input type="text" name="username" class="form-control" value="<?= $uname ?>">
                      </div>
-                     <div class="mb-3">
+                     <div class=" mb-3">
                          <label class="form-label">Password</label>
                          <div class="input-group mb-3">
                              <input type="password" name="pass" class="form-control" id="passInput">
