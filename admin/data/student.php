@@ -1,32 +1,32 @@
 <?php
 
-// Get Teacher by ID
-function getTeachersById($teacher_id, $conn)
+// Get student by ID
+function getStudentsById($student_id, $conn)
 {
-    $sql = "SELECT * FROM teachers
-           WHERE teacher_id=?";
+    $sql = "SELECT * FROM students
+           WHERE student_id=?";
     $stmt = $conn->prepare($sql);
-    $stmt->execute([$teacher_id]);
+    $stmt->execute([$student_id]);
 
     if ($stmt->rowCount() == 1) {
-        $teachers = $stmt->fetch();
-        return $teachers;
+        $students = $stmt->fetch();
+        return $students;
     } else {
         return 0;
     }
 }
 
 
-// All Teachers
-function getAllTeachers($conn)
+// All students
+function getAllStudents($conn)
 {
-    $sql = "SELECT * FROM teachers";
+    $sql = "SELECT * FROM students";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 
     if ($stmt->rowCount() >= 1) {
-        $teachers = $stmt->fetchAll();
-        return $teachers;
+        $students = $stmt->fetchAll();
+        return $students;
     } else {
         return 0;
     }
@@ -34,14 +34,14 @@ function getAllTeachers($conn)
 
 
 //Checking if the username is taken
-function unameIsUnique($uname, $conn, $teacher_id = 0)
+function unameIsUnique($uname, $conn, $student_id = 0)
 {
-    $sql = "SELECT username, teacher_id FROM teachers
+    $sql = "SELECT username, student_id FROM students
             WHERE username=?";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$uname]);
 
-    if ($teacher_id == 0) {
+    if ($student_id == 0) {
         if ($stmt->rowCount() >= 1) {
             return 0;
         } else {
@@ -49,8 +49,8 @@ function unameIsUnique($uname, $conn, $teacher_id = 0)
         }
     } else {
         if ($stmt->rowCount() >= 1) {
-            $teachers = $stmt->fetch();
-            if ($teachers['teacher_id']  == $teacher_id) {
+            $students = $stmt->fetch();
+            if ($students['student_id']  == $student_id) {
                 return 1;
             } else {
                 return 0;
@@ -62,10 +62,10 @@ function unameIsUnique($uname, $conn, $teacher_id = 0)
 }
 
 // DELETE 
-function removeTeacher($id, $conn)
+function removeStudent($id, $conn)
 {
-    $sql = "DELETE FROM teachers
-            WHERE teacher_id=?";
+    $sql = "DELETE FROM students
+            WHERE student_id=?";
     $stmt = $conn->prepare($sql);
     $re = $stmt->execute([$id]);
 

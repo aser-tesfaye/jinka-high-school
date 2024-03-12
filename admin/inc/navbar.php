@@ -15,7 +15,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="student.php">Students</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="registrar-office.php">Registrar-office</a>
                 </li>
                 <li class="nav-item">
@@ -29,7 +29,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="setting.php">Setting</a>
-                </li>
+                </li> -->
 
 
 
