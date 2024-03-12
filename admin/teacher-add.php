@@ -5,20 +5,22 @@
         isset($_SESSION['role'])
     ) {
         if ($_SESSION['role'] == 'Admin') {
+            
             include "../db_connection.php";
             include "data/teacher.php";
-            include "data/subject.php";
+
+
             $teachers = getAllTeachers($conn);
-            // $subjects = getAllSubjects($conn);
+
 
             $fname = '';
             $lname = '';
             $uname = '';
 
 
-            if (isset($_GET['fname'])) $fname = $_GET['fname'];
-            if (isset($_GET['lname'])) $lname = $_GET['lname'];
-            if (isset($_GET['uname'])) $uname = $_GET['uname'];
+            // if (isset($_GET['fname'])) $fname = $_GET['fname'];
+            // if (isset($_GET['lname'])) $lname = $_GET['lname'];
+            // if (isset($_GET['uname'])) $uname = $_GET['uname'];
 
     ?>
          <!DOCTYPE html>
@@ -43,6 +45,8 @@
              <div class="container mt-5">
                  <a href="teacher.php" class="btn btn-dark">Go Back</a>
                  <br><br>
+
+
                  <form class="shadow p-3 mt-5 form-w" method="post" action="req/teacher-add.php">
                      <h3>Add New Teacher</h3>
                      <hr>
@@ -80,7 +84,7 @@
                          <label class="form-label">Password</label>
                          <div class="input-group mb-3">
                              <input type="password" name="pass" class="form-control" id="passInput">
-                             <button class="btn btn-secondary" type="button" id="gBtn">Random</button>
+                             <!-- <button class="btn btn-secondary" type="button" id="gBtn">Random</button> -->
                          </div>
                      </div>
                      <div class="mb-3">
@@ -137,11 +141,15 @@
              </div>
 
              <script src="js/bootstrap.min.js"></script>
+
+
              <script>
                  $(document).ready(function() {
                      $("#navLinks li:nth-child(2) a").addClass('active');
                  });
              </script>
+
+             
          </body>
 
          </html>

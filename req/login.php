@@ -32,19 +32,20 @@ if (
             $sql = "SELECT * FROM admins 
         	        WHERE username = ?";
             $role = "Admin";
-        } else if ($role == '2') {
-            $sql = "SELECT * FROM teachers 
-        	        WHERE username = ?";
-            $role = "Teacher";
-        } else if ($role == '3') {
-            $sql = "SELECT * FROM students 
-        	        WHERE username = ?";
-            $role = "Student";
-        } else if ($role == '4') {
-            $sql = "SELECT * FROM registrar_office 
-        	        WHERE username = ?";
-            $role = "Registrar Office";
-        }
+        } 
+        // else if ($role == '2') {
+        //     $sql = "SELECT * FROM teachers 
+        // 	        WHERE username = ?";
+        //     $role = "Teacher";
+        // } else if ($role == '3') {
+        //     $sql = "SELECT * FROM students 
+        // 	        WHERE username = ?";
+        //     $role = "Student";
+        // } else if ($role == '4') {
+        //     $sql = "SELECT * FROM registrar_office 
+        // 	        WHERE username = ?";
+        //     $role = "Registrar Office";
+        // }
 
         $stmt = $conn->prepare($sql);
         $stmt->execute([$uname]);
@@ -55,9 +56,13 @@ if (
             $password = $user['password'];
             
             if ($username === $uname) {
+
                 if (password_verify($pass, $password)) {
+                    
                     $_SESSION['role'] = $role;
+
                     if ($role == 'Admin') {
+
                         $id = $user['admin_id'];
                         $_SESSION['admin_id'] = $id;
                         header("Location: ../admin/index.php");

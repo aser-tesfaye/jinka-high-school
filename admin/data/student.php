@@ -62,16 +62,16 @@ function unameIsUnique($uname, $conn, $student_id = 0)
 }
 
 // DELETE 
-function removeStudent($id, $conn)
-{
-    $sql = "DELETE FROM students
-            WHERE student_id=?";
-    $stmt = $conn->prepare($sql);
-    $re = $stmt->execute([$id]);
+// function removeStudent($id, $conn)
+// {
+//     $sql = "DELETE FROM students
+//             WHERE student_id=?";
+//     $stmt = $conn->prepare($sql);
+//     $re = $stmt->execute([$id]);
 
-    if ($re) {
-        return 1;
-    } else {
-        return 0;
-    }
-}
+//     if ($re) {
+//         return 1;
+//     } else {
+//         return 0;
+//     }
+// }

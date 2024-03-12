@@ -21,6 +21,7 @@ function getTeachersById($teacher_id, $conn)
 function getAllTeachers($conn)
 {
     $sql = "SELECT * FROM teachers";
+
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 
@@ -62,16 +63,16 @@ function unameIsUnique($uname, $conn, $teacher_id = 0)
 }
 
 // DELETE 
-function removeTeacher($id, $conn)
-{
-    $sql = "DELETE FROM teachers
-            WHERE teacher_id=?";
-    $stmt = $conn->prepare($sql);
-    $re = $stmt->execute([$id]);
+// function removeTeacher($id, $conn)
+// {
+//     $sql = "DELETE FROM teachers
+//             WHERE teacher_id=?";
+//     $stmt = $conn->prepare($sql);
+//     $re = $stmt->execute([$id]);
 
-    if ($re) {
-        return 1;
-    } else {
-        return 0;
-    }
-}
+//     if ($re) {
+//         return 1;
+//     } else {
+//         return 0;
+//     }
+// }

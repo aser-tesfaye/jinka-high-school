@@ -15,24 +15,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="student.php">Students</a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="registrar-office.php">Registrar-office</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="course.php">Class</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="course.php">Course</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="section.php">Section</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="setting.php">Setting</a>
-                </li> -->
-
-
-
+                
             </ul>
             <ul class="navbar-nav me-right mb-2 mb-lg-0">
                 <li class="nav-item">

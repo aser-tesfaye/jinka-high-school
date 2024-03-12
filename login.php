@@ -11,7 +11,7 @@
 </head>
 
 <body class="body-login">
-    <div class="black-fill"><br><br>
+    <div><br><br>
         <div class="container">
             <div class="d-flex justify-content-center align-items-center flex-column">
                 <form class="login" method="post" action="req/login.php">
@@ -37,8 +37,6 @@
                         <label class="form-label">Login As</label>
                         <select class="form-control" name="role">
                             <option value="1">Admin</option>
-                            <option value="3">Student</option>
-                            <option value="2">Teacher</option>
                         </select>
                     </div>
 
@@ -49,11 +47,6 @@
             </div>
 
             <div class="text-center text-light">
-                <!-- <?php
-                    $pass = 123;
-                    $pass = password_hash($pass, PASSWORD_DEFAULT);
-                    echo $pass;
-                ?> -->
                 &copy; 2024 J School. All rights reserved.
             </div>
         </div>

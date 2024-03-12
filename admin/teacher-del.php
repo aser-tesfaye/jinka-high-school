@@ -7,10 +7,24 @@
     ) {
         if ($_SESSION['role'] == 'Admin') {
             include "../db_connection.php";
-            include "data/teacher.php";
-
 
             $id = $_GET['teacher_id'];
+
+            function removeTeacher($id, $conn)
+            {
+                $sql = "DELETE FROM teachers
+                 WHERE teacher_id=?";
+                $stmt = $conn->prepare($sql);
+                $re = $stmt->execute([$id]);
+
+                if ($re) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+
+
             if (removeTeacher($id, $conn)) {
                 $sm = "Successfully deleted!";
                 header("Location: teacher.php?success=$sm");

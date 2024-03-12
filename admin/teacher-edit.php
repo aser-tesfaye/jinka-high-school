@@ -11,6 +11,7 @@
             include "data/subject.php";
 
             $teacher_id = $_GET['teacher_id'];
+            
             $teachers = getTeachersById($teacher_id, $conn);
 
             $grades = explode(",", $teachers['grades']);

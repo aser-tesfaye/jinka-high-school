@@ -11,7 +11,7 @@
 </head>
 
 <body class="body-home">
-    <div class="black-fill"><br><br>
+    <div><br><br>
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-body-tertiary" id="homeNav">
                 <div class="container-fluid">
@@ -42,7 +42,7 @@
                 </div>
             </nav>
             <section class="welcome-text d-flex justify-content-center align-items-center flex-column">
-                <img src="logo2.png" alt="">
+                <img src="logo.png" alt="">
                 <h4>Welcome to J School</h4>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
             </section>

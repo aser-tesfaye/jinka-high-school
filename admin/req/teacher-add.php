@@ -61,6 +61,7 @@ if (
             } else {
                 // Hashing the password
                 $pass = password_hash($pass, PASSWORD_DEFAULT);
+                
                 $sql = "INSERT into teachers(username, pass, fname, lname, subjects, grades) VALUES(?,?,?,?,?,?)";
                 $stmt = $conn->prepare($sql);
                 $stmt->execute([$uname, $pass, $fname, $lname, $allSubject, $allGrade]);

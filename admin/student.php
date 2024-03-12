@@ -7,9 +7,7 @@
         if ($_SESSION['role'] == 'Admin') {
             include "../db_connection.php";
             include "data/student.php";
-            // include "data/subject.php";
             $students = getAllStudents($conn);
-            // $subjects = getAllSubjects($conn);
 
     ?>
          <!DOCTYPE html>
@@ -23,14 +21,12 @@
              <link rel="stylesheet" href="../css/bootstrap.min.css">
              <link rel="icon" href="../logo.png">
              <script src="../js/jquery-3.6.0.js"></script>
-             <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
          </head>
 
          <body>
              <?php
                 include "inc/navbar.php";
                 if ($students != 0) {
-                    # code...
 
                 ?>
 

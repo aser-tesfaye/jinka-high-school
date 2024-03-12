@@ -5,11 +5,12 @@
         isset($_SESSION['role'])
     ) {
         if ($_SESSION['role'] == 'Admin') {
+
+
             include "../db_connection.php";
             include "data/teacher.php";
-            // include "data/subject.php";
+
             $teachers = getAllTeachers($conn);
-            // $subjects = getAllSubjects($conn);
 
     ?>
          <!DOCTYPE html>
@@ -28,10 +29,11 @@
 
          <body>
              <?php
+             
                 include "inc/navbar.php";
-                if ($teachers != 0) {
-                    # code...
 
+                if ($teachers != 0) {
+                    
                 ?>
 
                  <div class="container mt-5">
@@ -91,7 +93,10 @@
                              </tbody>
                          </table>
                      </div>
-                 <?php } else { ?>
+
+                 <?php 
+                } else { 
+                    ?>
 
                      <div class="alert alert-info w-450 m-5" role="alert">
                          Empty!
