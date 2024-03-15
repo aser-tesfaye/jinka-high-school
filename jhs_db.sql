@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 13, 2024 at 08:59 PM
+-- Generation Time: Mar 15, 2024 at 05:26 PM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -147,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `registrar_office` (
 --
 
 INSERT INTO `registrar_office` (`r_user_id`, `username`, `password`, `fname`, `lname`, `address`, `employee_number`, `date_of_birth`, `phone_number`, `qualification`, `gender`, `email_address`, `date_of_joined`) VALUES
-(1, 'james', '$2y$10$17/U7eXWXLardt.n9kq0w.xESVyMDv2I2IVhAOUdI/yQe8NH8hU4q', 'James', 'William', 'West Virginia', 843583, '2022-10-04', '+12328324092', 'diploma', 'Male', 'james@j.com', '2022-10-23 01:03:25'),
+(1, 'james', '$2y$10$H5KOU0AxLE1aCw0Zv.toDuno5HjlmWkoUYcHAmpthBUDQgam/Jp1m', 'James', 'William', 'West Virginia', 843583, '2022-10-04', '+12328324092', 'diploma', 'Male', 'james@j.com', '2022-10-23 01:03:25'),
 (2, 'oliver2', '$2y$10$7XhzOu.3OgHPFv7hKjvfUu3waU.8j6xTASj4yIWMfo...k/p8yvvS', 'Oliver2', 'Noah', 'California,  Los angeles', 6546, '1999-06-11', '09457396789', 'BSc, BA', 'Male', 'ov@ab.com', '2022-11-12 23:06:18');
 
 -- --------------------------------------------------------
@@ -229,7 +229,7 @@ CREATE TABLE IF NOT EXISTS `students` (
 --
 
 INSERT INTO `students` (`student_id`, `username`, `password`, `fname`, `lname`, `grade`, `section`, `address`, `gender`, `email_address`, `date_of_birth`, `date_of_joined`, `parent_fname`, `parent_lname`, `parent_phone_number`) VALUES
-(1, 'john', '$2y$10$4wcDDteuGGifngIRhh7/vOQVN9sCz66Eq0a9WZX8j0woOh6IQHfcK', 'John', 'Doe', 1, 1, 'California,  Los angeles', 'Male', 'abas55@ab.com', '2012-09-12', '2019-12-11 14:16:44', 'Doe', 'Mark', '09393'),
+(1, 'john', '$2y$10$G4k9DYq5OH29rw8xFEhc/.KHdwDCeA6TKLTnippUX0D6Ov3IOM7jO', 'John', 'Doe', 1, 1, 'California,  Los angeles', 'Male', 'abas55@ab.com', '2012-09-12', '2019-12-11 14:16:44', 'Doe', 'Mark', '09393'),
 (3, 'abas', '$2y$10$KLFheMWgpLfoiqMuW2LQxOPficlBiSIJ9.wE2qr5yJUbAQ.5VURoO', 'Abas', 'A.', 2, 1, 'Berlin', 'Male', 'abas@ab.com', '2002-12-03', '2021-12-01 14:16:51', 'dsf', 'dfds', '7979'),
 (4, 'jo', '$2y$10$qzxUsLvOxWfwM1O90Oc0wuYj5LA7v1H.edeVmQwu2iZeSPTfzYJlS', 'John3', 'Doe', 1, 1, 'California,  Los angeles', 'Female', 'jo@jo.com', '2013-06-13', '2022-09-10 13:48:49', 'Doe', 'Mark', '074932040'),
 (5, 'jo2', '$2y$10$Kw3ZZnrxHgZy.D2m9HetQueYA.NHJDJ4oqT5Ebj0o9YNWXmNzppwq', 'Jhon', 'Doe', 1, 1, 'UK', 'Male', 'jo@jo.com', '1990-02-15', '2023-02-12 18:11:26', 'Doe', 'Do', '0943568654');
@@ -321,11 +321,10 @@ CREATE TABLE IF NOT EXISTS `teachers` (
 --
 
 INSERT INTO `teachers` (`teacher_id`, `username`, `password`, `class`, `fname`, `lname`, `subjects`, `address`, `employee_number`, `date_of_birth`, `phone_number`, `qualification`, `gender`, `email_address`, `date_of_joined`) VALUES
-(1, 'oliver', '$2y$10$sZFfKLAAz54G.zcabS0QEOTffQ.H3wizPYrel9YOTLU/Ii1S3XeRm', '1234', 'Oliver', 'Noah', '1245', 'California,  Los angeles', 6546, '2022-09-12', '0945739', 'BSc', 'Male', 'ol@ab.com', '2022-09-09 05:23:45'),
+(1, 'oliver', '$2y$10$Nja0oKqMOohZ32WuZIBaKuhtYU.LjU1Hu6XEHxXmwqHvFiV6UR63y', '1234', 'Oliver', 'Noah', '1245', 'California,  Los angeles', 6546, '2022-09-12', '0945739', 'BSc', 'Male', 'ol@ab.com', '2022-09-09 05:23:45'),
 (5, 'abas', '$2y$10$6IHJz6M6lH43nzZaY.15meW3728W6FeYaHSZXoYPioOwDMiWA9fCG', '123', 'Abas', 'A.', '12', 'Berlin', 1929, '2003-09-16', '09457396789', 'BSc,', 'Male', 'abas55@ab.com', '2022-09-09 06:42:31');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
