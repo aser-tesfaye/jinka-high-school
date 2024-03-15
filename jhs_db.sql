@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 08, 2024 at 09:38 AM
+-- Generation Time: Mar 13, 2024 at 08:59 PM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -24,26 +24,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admins`
+-- Table structure for table `admin`
 --
 
-DROP TABLE IF EXISTS `admins`;
-CREATE TABLE IF NOT EXISTS `admins` (
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE IF NOT EXISTS `admin` (
   `admin_id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(127) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `fname` varchar(127) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `lname` varchar(127) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `username` varchar(127) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `fname` varchar(127) COLLATE utf8mb4_general_ci NOT NULL,
+  `lname` varchar(127) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`admin_id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `admins`
+-- Dumping data for table `admin`
 --
 
-INSERT INTO `admins` (`admin_id`, `username`, `password`, `fname`, `lname`) VALUES
-(2, 'aser', '$2y$10$E3WYFbcgNvEXiqjnbhk0fO1ePM/SpeK93hOpO.6gJ.t3Jmpv.NX2y', 'Aser', 'Tesfaye');
+INSERT INTO `admin` (`admin_id`, `username`, `password`, `fname`, `lname`) VALUES
+(1, 'admin', '$2y$10$H7obJEdmLzqqcPy7wQWhsOLUvrgzC8f1Y1or2Gxaza5z1PT0tvLy6', 'Aser', 'Tesfaye\r\n');
 
 -- --------------------------------------------------------
 
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `class` (
 --
 
 INSERT INTO `class` (`class_id`, `grade`, `section`) VALUES
-(1, 7, 2),
+(1, 3, 2),
 (2, 1, 1),
 (3, 3, 3),
 (4, 2, 1);
@@ -78,8 +78,8 @@ INSERT INTO `class` (`class_id`, `grade`, `section`) VALUES
 DROP TABLE IF EXISTS `grades`;
 CREATE TABLE IF NOT EXISTS `grades` (
   `grade_id` int NOT NULL AUTO_INCREMENT,
-  `grade` varchar(31) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `grade_code` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `grade` varchar(31) COLLATE utf8mb4_general_ci NOT NULL,
+  `grade_code` varchar(7) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`grade_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -88,10 +88,10 @@ CREATE TABLE IF NOT EXISTS `grades` (
 --
 
 INSERT INTO `grades` (`grade_id`, `grade`, `grade_code`) VALUES
-(1, '9', 'HS'),
-(2, '10', 'HS'),
-(3, '11', 'PS'),
-(4, '12', 'PS');
+(1, '9', 'G'),
+(2, '10', 'G'),
+(3, '11', 'G'),
+(4, '12', 'G');
 
 -- --------------------------------------------------------
 
@@ -127,17 +127,17 @@ INSERT INTO `message` (`message_id`, `sender_full_name`, `sender_email`, `messag
 DROP TABLE IF EXISTS `registrar_office`;
 CREATE TABLE IF NOT EXISTS `registrar_office` (
   `r_user_id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(127) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `fname` varchar(31) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `lname` varchar(31) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `address` varchar(31) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `username` varchar(127) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `fname` varchar(31) COLLATE utf8mb4_general_ci NOT NULL,
+  `lname` varchar(31) COLLATE utf8mb4_general_ci NOT NULL,
+  `address` varchar(31) COLLATE utf8mb4_general_ci NOT NULL,
   `employee_number` int NOT NULL,
   `date_of_birth` date NOT NULL,
-  `phone_number` varchar(31) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `qualification` varchar(31) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `gender` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `email_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `phone_number` varchar(31) COLLATE utf8mb4_general_ci NOT NULL,
+  `qualification` varchar(31) COLLATE utf8mb4_general_ci NOT NULL,
+  `gender` varchar(7) COLLATE utf8mb4_general_ci NOT NULL,
+  `email_address` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `date_of_joined` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`r_user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -147,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `registrar_office` (
 --
 
 INSERT INTO `registrar_office` (`r_user_id`, `username`, `password`, `fname`, `lname`, `address`, `employee_number`, `date_of_birth`, `phone_number`, `qualification`, `gender`, `email_address`, `date_of_joined`) VALUES
-(1, 'james', '$2y$10$t0SCfeXNcyiO9hdzNTKKB.j2xlE2yt8Hm2.0AWJR5kSE469JIkHKG', 'James', 'William', 'West Virginia', 843583, '2022-10-04', '+12328324092', 'diploma', 'Male', 'james@j.com', '2022-10-23 01:03:25'),
+(1, 'james', '$2y$10$17/U7eXWXLardt.n9kq0w.xESVyMDv2I2IVhAOUdI/yQe8NH8hU4q', 'James', 'William', 'West Virginia', 843583, '2022-10-04', '+12328324092', 'diploma', 'Male', 'james@j.com', '2022-10-23 01:03:25'),
 (2, 'oliver2', '$2y$10$7XhzOu.3OgHPFv7hKjvfUu3waU.8j6xTASj4yIWMfo...k/p8yvvS', 'Oliver2', 'Noah', 'California,  Los angeles', 6546, '1999-06-11', '09457396789', 'BSc, BA', 'Male', 'ov@ab.com', '2022-11-12 23:06:18');
 
 -- --------------------------------------------------------
@@ -159,7 +159,7 @@ INSERT INTO `registrar_office` (`r_user_id`, `username`, `password`, `fname`, `l
 DROP TABLE IF EXISTS `section`;
 CREATE TABLE IF NOT EXISTS `section` (
   `section_id` int NOT NULL AUTO_INCREMENT,
-  `section` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `section` varchar(7) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`section_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -183,10 +183,10 @@ DROP TABLE IF EXISTS `setting`;
 CREATE TABLE IF NOT EXISTS `setting` (
   `id` int NOT NULL AUTO_INCREMENT,
   `current_year` int NOT NULL,
-  `current_semester` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `school_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `slogan` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `about` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `current_semester` varchar(11) COLLATE utf8mb4_general_ci NOT NULL,
+  `school_name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `slogan` varchar(300) COLLATE utf8mb4_general_ci NOT NULL,
+  `about` text COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -195,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `setting` (
 --
 
 INSERT INTO `setting` (`id`, `current_year`, `current_semester`, `school_name`, `slogan`, `about`) VALUES
-(1, 2023, 'II', 'Y School', 'Lux et Veritas Light and Truth', 'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.');
+(1, 2024, 'I', 'Jinka High-School', 'Knowledge for Change!', 'Jinka Secondary School is the very first - found in 1972 E.C - high-school in Jinka City. Also, it is inaugural among other High-school in the city in case of time and capacity.');
 
 -- --------------------------------------------------------
 
@@ -206,19 +206,33 @@ INSERT INTO `setting` (`id`, `current_year`, `current_semester`, `school_name`, 
 DROP TABLE IF EXISTS `students`;
 CREATE TABLE IF NOT EXISTS `students` (
   `student_id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(127) NOT NULL,
-  `password` varchar(127) NOT NULL,
-  `fname` varchar(127) NOT NULL,
-  `lname` varchar(127) NOT NULL,
-  PRIMARY KEY (`student_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `username` varchar(127) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `fname` varchar(127) COLLATE utf8mb4_general_ci NOT NULL,
+  `lname` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `grade` int NOT NULL,
+  `section` int NOT NULL,
+  `address` varchar(31) COLLATE utf8mb4_general_ci NOT NULL,
+  `gender` varchar(7) COLLATE utf8mb4_general_ci NOT NULL,
+  `email_address` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `date_of_birth` date NOT NULL,
+  `date_of_joined` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `parent_fname` varchar(127) COLLATE utf8mb4_general_ci NOT NULL,
+  `parent_lname` varchar(127) COLLATE utf8mb4_general_ci NOT NULL,
+  `parent_phone_number` varchar(31) COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`student_id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`student_id`, `username`, `password`, `fname`, `lname`) VALUES
-(1, 'abebe', '$2y$10$E3WYFbcgNvEXiqjnbhk0fO1ePM/SpeK93hOpO.6gJ.t3Jmpv.NX2y', 'Abebe', 'Kebede');
+INSERT INTO `students` (`student_id`, `username`, `password`, `fname`, `lname`, `grade`, `section`, `address`, `gender`, `email_address`, `date_of_birth`, `date_of_joined`, `parent_fname`, `parent_lname`, `parent_phone_number`) VALUES
+(1, 'john', '$2y$10$4wcDDteuGGifngIRhh7/vOQVN9sCz66Eq0a9WZX8j0woOh6IQHfcK', 'John', 'Doe', 1, 1, 'California,  Los angeles', 'Male', 'abas55@ab.com', '2012-09-12', '2019-12-11 14:16:44', 'Doe', 'Mark', '09393'),
+(3, 'abas', '$2y$10$KLFheMWgpLfoiqMuW2LQxOPficlBiSIJ9.wE2qr5yJUbAQ.5VURoO', 'Abas', 'A.', 2, 1, 'Berlin', 'Male', 'abas@ab.com', '2002-12-03', '2021-12-01 14:16:51', 'dsf', 'dfds', '7979'),
+(4, 'jo', '$2y$10$qzxUsLvOxWfwM1O90Oc0wuYj5LA7v1H.edeVmQwu2iZeSPTfzYJlS', 'John3', 'Doe', 1, 1, 'California,  Los angeles', 'Female', 'jo@jo.com', '2013-06-13', '2022-09-10 13:48:49', 'Doe', 'Mark', '074932040'),
+(5, 'jo2', '$2y$10$Kw3ZZnrxHgZy.D2m9HetQueYA.NHJDJ4oqT5Ebj0o9YNWXmNzppwq', 'Jhon', 'Doe', 1, 1, 'UK', 'Male', 'jo@jo.com', '1990-02-15', '2023-02-12 18:11:26', 'Doe', 'Do', '0943568654');
 
 -- --------------------------------------------------------
 
@@ -229,12 +243,12 @@ INSERT INTO `students` (`student_id`, `username`, `password`, `fname`, `lname`) 
 DROP TABLE IF EXISTS `student_score`;
 CREATE TABLE IF NOT EXISTS `student_score` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `semester` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `semester` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
   `year` int NOT NULL,
   `student_id` int NOT NULL,
   `teacher_id` int NOT NULL,
   `subject_id` int NOT NULL,
-  `results` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `results` varchar(512) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -256,8 +270,8 @@ INSERT INTO `student_score` (`id`, `semester`, `year`, `student_id`, `teacher_id
 DROP TABLE IF EXISTS `subjects`;
 CREATE TABLE IF NOT EXISTS `subjects` (
   `subject_id` int NOT NULL AUTO_INCREMENT,
-  `subject` varchar(31) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `subject_code` varchar(31) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `subject` varchar(31) COLLATE utf8mb4_general_ci NOT NULL,
+  `subject_code` varchar(31) COLLATE utf8mb4_general_ci NOT NULL,
   `grade` int NOT NULL,
   PRIMARY KEY (`subject_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -267,11 +281,13 @@ CREATE TABLE IF NOT EXISTS `subjects` (
 --
 
 INSERT INTO `subjects` (`subject_id`, `subject`, `subject_code`, `grade`) VALUES
-(1, 'English', 'Eng-09', 1),
-(2, 'Physics', 'Phy-09', 2),
-(3, 'Biology', 'Bio-09', 1),
-(4, 'Math', 'Math-09', 1),
-(5, 'Chemistry', 'ch-01', 1);
+(1, 'English', 'En', 1),
+(2, 'Physics', 'Phy', 2),
+(3, 'Biology', 'Bio-01', 1),
+(4, 'Math', 'Math-01', 1),
+(5, 'Chemistry', 'ch-01', 1),
+(6, 'Programming', 'pro-01', 1),
+(7, 'Java', 'java-01', 1);
 
 -- --------------------------------------------------------
 
@@ -282,23 +298,34 @@ INSERT INTO `subjects` (`subject_id`, `subject`, `subject_code`, `grade`) VALUES
 DROP TABLE IF EXISTS `teachers`;
 CREATE TABLE IF NOT EXISTS `teachers` (
   `teacher_id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(127) NOT NULL,
-  `pass` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `fname` varchar(127) NOT NULL,
-  `lname` varchar(127) NOT NULL,
-  `subjects` varchar(127) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `grades` varchar(127) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  PRIMARY KEY (`teacher_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `username` varchar(127) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `class` varchar(31) COLLATE utf8mb4_general_ci NOT NULL,
+  `fname` varchar(127) COLLATE utf8mb4_general_ci NOT NULL,
+  `lname` varchar(127) COLLATE utf8mb4_general_ci NOT NULL,
+  `subjects` varchar(31) COLLATE utf8mb4_general_ci NOT NULL,
+  `address` varchar(31) COLLATE utf8mb4_general_ci NOT NULL,
+  `employee_number` int NOT NULL,
+  `date_of_birth` date DEFAULT NULL,
+  `phone_number` varchar(31) COLLATE utf8mb4_general_ci NOT NULL,
+  `qualification` varchar(127) COLLATE utf8mb4_general_ci NOT NULL,
+  `gender` varchar(7) COLLATE utf8mb4_general_ci NOT NULL,
+  `email_address` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `date_of_joined` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`teacher_id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `teachers`
 --
 
-INSERT INTO `teachers` (`teacher_id`, `username`, `pass`, `fname`, `lname`, `subjects`, `grades`) VALUES
-(1, 'endalk', '$2y$10$E3WYFbcgNvEXiqjnbhk0fO1ePM/SpeK93hOpO.6gJ.t3Jmpv.NX2y', 'Endalkachew', 'Z.', '', '9');
+INSERT INTO `teachers` (`teacher_id`, `username`, `password`, `class`, `fname`, `lname`, `subjects`, `address`, `employee_number`, `date_of_birth`, `phone_number`, `qualification`, `gender`, `email_address`, `date_of_joined`) VALUES
+(1, 'oliver', '$2y$10$sZFfKLAAz54G.zcabS0QEOTffQ.H3wizPYrel9YOTLU/Ii1S3XeRm', '1234', 'Oliver', 'Noah', '1245', 'California,  Los angeles', 6546, '2022-09-12', '0945739', 'BSc', 'Male', 'ol@ab.com', '2022-09-09 05:23:45'),
+(5, 'abas', '$2y$10$6IHJz6M6lH43nzZaY.15meW3728W6FeYaHSZXoYPioOwDMiWA9fCG', '123', 'Abas', 'A.', '12', 'Berlin', 1929, '2003-09-16', '09457396789', 'BSc,', 'Male', 'abas55@ab.com', '2022-09-09 06:42:31');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+

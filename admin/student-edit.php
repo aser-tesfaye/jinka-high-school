@@ -1,229 +1,297 @@
- <?php
-    session_start();
-    if (
-        isset($_SESSION['admin_id']) &&
-        isset($_SESSION['role']) &&
-        isset($_GET['student_id'])
-    ) {
-        if ($_SESSION['role'] == 'Admin') {
-            include "../db_connection.php";
-            include "data/student.php";
-            include "data/subject.php";
+<?php 
+session_start();
+if (isset($_SESSION['admin_id']) && 
+    isset($_SESSION['role'])     &&
+    isset($_GET['student_id'])) {
 
-            $student_id = $_GET['student_id'];
-            $students = getStudentsById($student_id, $conn);
+    if ($_SESSION['role'] == 'Admin') {
+      
+       include "../DB_connection.php";
+       include "data/subject.php";
+       include "data/grade.php";
+       include "data/student.php";
+       include "data/section.php";
+       $subjects = getAllSubjects($conn);
+       $grades = getAllGrades($conn);
+       $sections = getAllsections($conn);
+       
+       $student_id = $_GET['student_id'];
+       $student = getStudentById($student_id, $conn);
 
-            $grades = explode(",", $students['grades']);
-            $subjects = explode(",", $students['subjects']);
-
-            if ($student_id == 0) {
-                header("Location: student.php");
-                exit;
-            }
-
-
-    ?>
-         <!DOCTYPE html>
-         <html lang="en">
-
-         <head>
-             <meta charset="UTF-8">
-             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-             <title>Admin - Edit Students</title>
-             <link rel="stylesheet" href="../css/style.css">
-             <link rel="stylesheet" href="../css/bootstrap.min.css">
-             <link rel="icon" href="../logo.png">
-             <script src="../js/jquery-3.6.0.js"></script>
-             <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-         </head>
-
-         <body>
-             <?php
-                include "inc/navbar.php";
-                ?>
-
-             <div class="container mt-5">
-                 <a href="student.php" class="btn btn-dark">Go Back</a>
-                 <br><br>
-
-                 <form class="shadow p-3 mt-5 form-w" method="post" action="req/student-edit.php">
-                     <h3>Edit student</h3>
-                     <hr>
-                     <?php
-                        if (isset($_GET['error'])) { ?>
-                         <div class="alert alert-danger" role="alert">
-                             <?= $_GET['error'] ?>
-                         </div>
-                     <?php
-                        }
-                        ?>
-                     <?php
-                        if (isset($_GET['success'])) { ?>
-                         <div class="alert alert-success " role="alert">
-                             <?= $_GET['success'] ?>
-                         </div>
-                     <?php
-                        }
-                        ?>
+       if ($student == 0) {
+         header("Location: student.php");
+         exit;
+       }
 
 
-                     <div class="mb-3">
-                         <label class="form-label">First Name</label>
-                         <input type="text" name="fname" class="form-control" value="<?= $students['fname'] ?>">
-                     </div>
-                     <div class="mb-3">
-                         <label class="form-label">Last Name</label>
-                         <input type="text" name="lname" class="form-control" value=" <?= $students['lname'] ?>">
-                     </div>
-                     <div class="mb-3">
-                         <label class="form-label">Username</label>
-                         <input type="text" name="username" class="form-control" value=" <?= $students['username'] ?>">
-                     </div>
+ ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Admin - Edit Student</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="icon" href="../logo.png">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <?php 
+        include "inc/navbar.php";
+     ?>
+     <div class="container mt-5">
+        <a href="student.php"
+           class="btn btn-dark">Go Back</a>
 
-                     <div class="mb-3">
-                         <label class="form-label">Gender</label><br>
-                         <input type="radio" value="Male"  name="gender" > Male
-                         &nbsp;&nbsp;&nbsp;&nbsp;
-                         <input type="radio" value="Female" name="gender"> Female
-                     </div><br>
-                     <hr>
+        <form method="post"
+              class="shadow p-3 mt-5 form-w" 
+              action="req/student-edit.php">
+        <h3>Edit Student Info</h3><hr>
+        <?php if (isset($_GET['error'])) { ?>
+          <div class="alert alert-danger" role="alert">
+           <?=$_GET['error']?>
+          </div>
+        <?php } ?>
+        <?php if (isset($_GET['success'])) { ?>
+          <div class="alert alert-success" role="alert">
+           <?=$_GET['success']?>
+          </div>
+        <?php } ?>
+        <div class="mb-3">
+          <label class="form-label">First name</label>
+          <input type="text" 
+                 class="form-control"
+                 value="<?=$student['fname']?>" 
+                 name="fname">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Last name</label>
+          <input type="text" 
+                 class="form-control"
+                 value="<?=$student['lname']?>"
+                 name="lname">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Address</label>
+          <input type="text" 
+                 class="form-control"
+                 value="<?=$student['address']?>"
+                 name="address">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email address</label>
+          <input type="text" 
+                 class="form-control"
+                 value="<?=$student['email_address']?>"
+                 name="email_address">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Date of birth</label>
+          <input type="date" 
+                 class="form-control"
+                 value="<?=$student['date_of_birth']?>"
+                 name="date_of_birth">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Gender</label><br>
+          <input type="radio"
+                 value="Male"
+                 <?php if($student['gender'] == 'Male') echo 'checked';  ?> 
+                 name="gender"> Male
+                 &nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="radio"
+                 value="Female"
+                 <?php if($student['gender'] == 'Female') echo 'checked';  ?> 
+                 name="gender"> Female
+        </div>
 
-                     <div>
-                         <input type="text" value=" <?= $students['student_id'] ?>" name="student_id" hidden>
-                     </div>
+        <div class="mb-3">
+          <label class="form-label">Username</label>
+          <input type="text" 
+                 class="form-control"
+                 value="<?=$student['username']?>"
+                 name="username">
+        </div>
+        <input type="text"
+                value="<?=$student['student_id']?>"
+                name="student_id"
+                hidden>
 
-                     <div class="mb-3">
-                         <label class="form-label">Subject</label>
-                         <div class="row">
-                             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                                 <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" name="subject[]" value="English" <?php
-                                                                                                                                                if (in_array("English", $subjects)) {
-                                                                                                                                                    echo "checked";
-                                                                                                                                                }
-                                                                                                                                                ?> />
+        <div class="mb-3">
+          <label class="form-label">Grade</label>
+          <div class="row row-cols-5">
+            <?php 
+            $grade_ids = str_split(trim($student['grade']));
+            foreach ($grades as $grade){ 
+              $checked =0;
+              foreach ($grade_ids as $grade_id ) {
+                if ($grade_id == $grade['grade_id']) {
+                   $checked =1;
+                }
+              }
+            ?>
+            <div class="col">
+              <input type="radio"
+                     name="grade"
+                     <?php if($checked) echo "checked"; ?>
+                     value="<?=$grade['grade_id']?>">
+                     <?=$grade['grade_code']?>-<?=$grade['grade']?>
+            </div>
+            <?php } ?>
+             
+          </div>
+        </div>
 
-                                 <label class="btn btn-outline-primary" for="btncheck1">English</label>
+        <div class="mb-3">
+          <label class="form-label">Section</label>
+          <div class="row row-cols-5">
+            <?php 
+            $section_ids = str_split(trim($student['section']));
+            foreach ($sections as $section){ 
+              $checked =0;
+              foreach ($section_ids as $section_id ) {
+                if ($section_id == $section['section_id']) {
+                   $checked =1;
+                }
+              }
+            ?>
+            <div class="col">
+              <input type="radio"
+                     name="section"
+                     <?php if($checked) echo "checked"; ?>
+                     value="<?=$section['section_id']?>">
+                     <?=$section['section']?>
+            </div>
+            <?php } ?>
+             
+          </div>
+        </div>
+        <br><hr>
 
-                                 <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" name="subject[]" value="Physics" <?php
-                                                                                                                                                if (in_array("Physics", $subjects)) {
-                                                                                                                                                    echo "checked";
-                                                                                                                                                }
-                                                                                                                                                ?> />
+        <div class="mb-3">
+          <label class="form-label">Parent first name</label>
+          <input type="text" 
+                 class="form-control"
+                 value="<?=$student['parent_fname']?>"
+                 name="parent_fname">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Parent last name</label>
+          <input type="text" 
+                 class="form-control"
+                 value="<?=$student['parent_lname']?>"
+                 name="parent_lname">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Parent phone number</label>
+          <input type="text" 
+                 class="form-control"
+                 value="<?=$student['parent_phone_number']?>"
+                 name="parent_phone_number">
+        </div>
 
-                                 <label class="btn btn-outline-primary" for="btncheck2">Physics</label>
+        
 
-                                 <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" name="subject[]" value="Biology" <?php
-                                                                                                                                                if (in_array("Biology", $subjects)) {
-                                                                                                                                                    echo "checked";
-                                                                                                                                                } ?> />
+      <button type="submit" 
+              class="btn btn-primary">
+              Update</button>
+     </form>
 
-                                 <label class="btn btn-outline-primary" for="btncheck3">Biology</label>
+     <form method="post"
+              class="shadow p-3 my-5 form-w" 
+              action="req/student-change.php"
+              id="change_password">
+        <h3>Change Password</h3><hr>
+          <?php if (isset($_GET['perror'])) { ?>
+            <div class="alert alert-danger" role="alert">
+             <?=$_GET['perror']?>
+            </div>
+          <?php } ?>
+          <?php if (isset($_GET['psuccess'])) { ?>
+            <div class="alert alert-success" role="alert">
+             <?=$_GET['psuccess']?>
+            </div>
+          <?php } ?>
 
-                                 <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off" name="subject[]" value="Maths" <?php
-                                                                                                                                            if (in_array("Maths", $subjects)) {
-                                                                                                                                                echo "checked";
-                                                                                                                                            }
-                                                                                                                                            ?> />
+       <div class="mb-3">
+            <div class="mb-3">
+            <label class="form-label">Admin password</label>
+                <input type="password" 
+                       class="form-control"
+                       name="admin_pass"> 
+          </div>
 
-                                 <label class="btn btn-outline-primary" for="btncheck4">Maths</label>
+            <label class="form-label">New password </label>
+            <div class="input-group mb-3">
+                <input type="text" 
+                       class="form-control"
+                       name="new_pass"
+                       id="passInput">
+                <button class="btn btn-secondary"
+                        id="gBtn">
+                        Random</button>
+            </div>
+            
+          </div>
+          <input type="text"
+                value="<?=$student['student_id']?>"
+                name="student_id"
+                hidden>
 
-                                 <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off" name="subject[]" value="Chemistry" <?php
-                                                                                                                                                if (in_array("Chemistry", $subjects)) {
-                                                                                                                                                    echo "checked";
-                                                                                                                                                }
-                                                                                                                                                ?> />
+          <div class="mb-3">
+            <label class="form-label">Confirm new password  </label>
+                <input type="text" 
+                       class="form-control"
+                       name="c_new_pass"
+                       id="passInput2"> 
+          </div>
+          <button type="submit" 
+              class="btn btn-primary">
+              Change</button>
+        </form>
+     </div>
+     
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>	
+    <script>
+        $(document).ready(function(){
+             $("#navLinks li:nth-child(3) a").addClass('active');
+        });
 
-                                 <label class="btn btn-outline-primary" for="btncheck5">Chemistry</label>
-                             </div>
-                         </div>
-                     </div>
-                     <div class="mb-3">
-                         <label class="form-label">Grade</label>
-                         <div class="row">
-                             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                                 <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off" name="grade[]" value="9" <?php
-                                                                                                                                        if (in_array("9", $grades)) {
-                                                                                                                                            echo "checked";
-                                                                                                                                        }
-                                                                                                                                        ?>>
+        function makePass(length) {
+            var result           = '';
+            var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var charactersLength = characters.length;
+            for ( var i = 0; i < length; i++ ) {
+              result += characters.charAt(Math.floor(Math.random() * 
+         charactersLength));
 
-                                 <label class="btn btn-outline-primary" for="btncheck6">9</label>
-
-                                 <input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off" name="grade[]" value="10" <?php
-                                                                                                                                        if (in_array("10", $grades)) {
-                                                                                                                                            echo "checked";
-                                                                                                                                        }
-                                                                                                                                        ?>>
-
-                                 <label class="btn btn-outline-primary" for="btncheck7">10</label>
-
-                                 <input type="checkbox" class="btn-check" id="btncheck8" autocomplete="off" name="grade[]" value="11" <?php
-                                                                                                                                        if (in_array("11", $grades)) {
-                                                                                                                                            echo "checked";
-                                                                                                                                        }
-                                                                                                                                        ?>>
-
-                                 <label class="btn btn-outline-primary" for="btncheck8">11</label>
-
-                                 <input type="checkbox" class="btn-check" id="btncheck9" autocomplete="off" name="grade[]" value="12" <?php
-                                                                                                                                        if (in_array("12", $grades)) {
-                                                                                                                                            echo "checked";
-                                                                                                                                        }
-                                                                                                                                        ?>>
-
-                                 <label class="btn btn-outline-primary" for="btncheck9">12</label>
-                             </div>
-                         </div>
-                     </div>
-
-                     <button type="submit" class="btn btn-primary">Update</button>
-                 </form>
-
-                 <form class="shadow p-3 mt-5 form-w" method="post" action="req/student-edit.php">
-                     <h3>Change Password </h3>
-                     <hr>
-                     <?php
-                        if (isset($_GET['error'])) { ?>
-                         <div class="alert alert-danger" role="alert">
-                             <?= $_GET['error'] ?>
-                         </div>
-                     <?php
-                        }
-                        ?>
-                     <?php
-                        if (isset($_GET['success'])) { ?>
-                         <div class="alert alert-success " role="alert">
-                             <?= $_GET['success'] ?>
-                         </div>
-                     <?php
-                        }
-                        ?>
-                     <div class="mb-3">
-                         <label class="form-label">Password</label>
-                         <div class="input-group mb-3">
-                             <input type="password" name="pass" class="form-control" id="passInput">
-                             <button class="btn btn-secondary" type="button" id="gBtn">Random</button>
-                         </div>
-                     </div>
-                 </form>
-             </div>
-
-             <script src="js/bootstrap.min.js"></script>
-             <script>
-                 $(document).ready(function() {
-                     $("#navLinks li:nth-child(2) a").addClass('active');
-                 });
-             </script>
-         </body>
-
-         </html>
- <?php
-        } else {
-            header("Location: student.php");
-            exit;
+           }
+           var passInput = document.getElementById('passInput');
+           var passInput2 = document.getElementById('passInput2');
+           passInput.value = result;
+           passInput2.value = result;
         }
-    } else {
-        header("Location: student.php");
-        exit;
-    }
-    ?>
+
+        var gBtn = document.getElementById('gBtn');
+        gBtn.addEventListener('click', function(e){
+          e.preventDefault();
+          makePass(4);
+        });
+    </script>
+
+</body>
+</html>
+<?php 
+
+  }else {
+    header("Location: student.php");
+    exit;
+  } 
+}else {
+	header("Location: student.php");
+	exit;
+} 
+
+?>
